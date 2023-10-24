@@ -4,7 +4,9 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 Future<void> main() async {
   await dotenv.load(
-      fileName: kReleaseMode ? "key.env.release" : "key.env.debug");
+      fileName: kReleaseMode
+          ? "key.env.release"
+          : "key.env.debug"); // To load the .env file contents into dotenv.
   runApp(const HomePage());
 }
 
@@ -17,8 +19,11 @@ class HomePage extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: Text(
-              dotenv.env['DEBUG'] == "true" ? "Debug Mode" : "Release Mode"),
+          title: Text(dotenv.env['DEBUG'] == "true"
+              ? "Debug Mode"
+              : "Release Mode", //access variables from .env throughout the application
+
+          ),
         ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
